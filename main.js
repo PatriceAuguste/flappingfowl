@@ -6,7 +6,7 @@ var mainState = {
     },
 
     create: function() {
-        game.stage.backgroundColor = 'navyBlue'
+        game.stage.backgroundColor = 'lightBlue'
         game.physics.startSystem(Phaser.Physics.ARCADE);
         this.bird= game.add.sprite(100,254, 'bird')
         game.physics.arcade.enable(this.bird);
