@@ -11,6 +11,9 @@ var mainState = {
         this.bird= game.add.sprite(100,254, 'bird')
         game.physics.arcade.enable(this.bird);
         this.bird.body.gravity.y = 1000;
+        this.score = 0;
+        this.labelScore = game.add.text(20, 20, "0",
+    { font: "30px Arial", fill: "#ffffff" });
 
         var spaceKey = game.input.keyboard.addKey(
                     Phaser.Keyboard.SPACEBAR);
@@ -21,8 +24,9 @@ var mainState = {
     update: function() {
       if (this.bird.y < 0 || this.bird.y > 490)
       this.restartGame();
-      // This function is called 60 times per second
-      // It contains the game's logic
+    }
+    game.physics.arcade.overlap(
+    this.bird, this.pipes, this.restartGame, null, this);
     },
 
     jump: function(){
@@ -47,6 +51,8 @@ var mainState = {
         if(i != hole && i != hole +1 && i != hole +2  ){
           this.addOnePipe(400, i * 60 + 10);
         }
+        this.score += 1;
+        this.labelScore.text = this.score;
  },
 };
 
