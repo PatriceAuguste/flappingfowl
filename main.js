@@ -2,11 +2,12 @@
 var mainState = {
     preload: function() {
         // This function will be executed at the beginning
-        game.load.image('bird', 'assets/bird.png')
+        game.load.image('bird', 'assets/bird.png');
+        game.load.image('pipe', 'assets/pipe.png');
     },
 
     create: function() {
-        game.stage.backgroundColor = '#6182BC'
+        game.stage.backgroundColor = '#71c5cf';
         game.physics.startSystem(Phaser.Physics.ARCADE);
         this.bird= game.add.sprite(100,254, 'bird')
         game.physics.arcade.enable(this.bird);
@@ -24,13 +25,13 @@ var mainState = {
     update: function() {
       if (this.bird.y < 0 || this.bird.y > 490)
       this.restartGame();
-    }
+
     game.physics.arcade.overlap(
     this.bird, this.pipes, this.restartGame, null, this);
     },
 
     jump: function(){
-      this.bird.body.velocity.y=-306;
+      this.bird.body.velocity.y = -350;
     },
 
     restartGame: function() {
@@ -46,13 +47,12 @@ var mainState = {
       pipe.outOfBoundsKill = true;
 },
       addRowOfPipes: function() {
-      var hole = Math.floor(Math.random()+5)+1
-      for (var i = 0; i < 8; i++)
-        if(i != hole && i != hole +1 && i != hole +2  ){
+      var hole = Math.floor(Math.random() * 5)+1;
+      for (var i = 0; i < 8; i++);
+        if(i != hole && i != hole +1 && i != hole +2  );
           this.addOnePipe(400, i * 60 + 10);
-        }
-        this.score += 1;
-        this.labelScore.text = this.score;
+    this.score += 1;
+    this.labelScore.text = this.score;
  },
 };
 
